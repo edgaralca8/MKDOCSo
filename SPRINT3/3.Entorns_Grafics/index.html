@@ -821,27 +821,27 @@
   <h1>3.Entorns Grafics</h1>
 
 <p><strong>Entorns gràfics</strong></p>
-<p>En aquest apartat veurem com configurar un LDAP amb interficie gràfica en aquest cas he escollit Apache Directory Studio perqué és intuitiu i senzill.</p>
+<p>En aquest apartat explicarem com configurar un servidor LDAP utilitzant una interfície gràfica. Per a això, farem servir Apache Directory Studio, ja que és una eina intuïtiva i fàcil d'utilitzar.</p>
 <p><strong>Apache Directory Studio</strong></p>
-<p>En primer lloc, ens descarregem l'apliació de la pàgina oficial. Després l'únic que hem de fer es descomprimir el paquet i executar-lo.</p>
+<p>El primer pas és descarregar l'aplicació des de la seva pàgina oficial. Un cop descarregada, només cal descomprimir el paquet i executar-lo.</p>
 <p><img alt="26" src="../IMAGES/89.png" /></p>
-<p>Un cop dins buscarem la connexió que tenim del LDAP i fem login amb les nostres credencials, llavors afegirem noves entrades, aquestes poden ser creades des de zero o amb plantilles, en aquest cas he escollit fer-ne una amb una plantilla per crear un nou usuari. Com podrem comprovar els usuaris que hem creat en els passos anteriors estan presents a la nostra estructura.</p>
+<p>Un cop dins del programa, buscarem la connexió LDAP i iniciarem sessió amb les nostres credencials. A continuació, procedirem a afegir noves entrades, que poden ser creades des de zero o utilitzant plantilles. En aquest exemple, optem per crear una entrada nova fent servir una plantilla per a un usuari. Així mateix, comprovarem que els usuaris creats prèviament ja formen part de l'estructura.</p>
 <p><img alt="26" src="../IMAGES/90png.png" /></p>
 <p><img alt="26" src="../IMAGES/91.png" /></p>
 <p><img alt="26" src="../IMAGES/92.png" /></p>
 <p><img alt="26" src="../IMAGES/93.png" /></p>
 <p><img alt="26" src="../IMAGES/94.png" /></p>
-<p>Un cop afegit i comprovat que es correce afegirem una nova entrada al nostre domini.</p>
+<p>Després d'afegir i verificar que la nova entrada s'ha creat correctament, incorporarem una altra entrada al nostre domini.</p>
 <p><img alt="26" src="../IMAGES/95.png" /></p>
-<p>També afegirem les classes del objecte agregat.</p>
+<p>A continuació, afegirem les classes d'objectes corresponents a l'entrada agregada.</p>
 <p><img alt="26" src="../IMAGES/96.png" /></p>
-<p>I per a finalitzar el que afegirem seran els atributs per a que l'usuari pugui ser utiitzat.</p>
+<p>Finalment, definirem els atributs necessaris perquè l'usuari pugui ser utilitzat correctament dins del sistema.</p>
 <p><img alt="26" src="../IMAGES/98.png" /></p>
-<p>Comprovem que s'hague creat correctament.</p>
+<p>Un cop fet això, comprovarem que la creació s'ha realitzat amb èxit.</p>
 <p><img alt="26" src="../IMAGES/99.png" /></p>
-<p>En aquest cas he escollit la carpeta compartida de perfils per crear la home. I després he donat una contrasenya i el /bin/bash per al loginshell.</p>
+<p>En aquest exemple, s'ha escollit la carpeta compartida de perfils per establir la seva directori home. A més, s'ha assignat una contrasenya i s'ha configurat el loginshell com a /bin/bash.</p>
 <p><img alt="26" src="../IMAGES/100.png" /></p>
-<p>Per entrar amb el client amb l'usuari nou hem d'escollir l'opció de no esteu llistat i allà posem les nostres credencials i ens crearà la home al directori escollit, després podrem entrar i comprovar que estem amb l'usuari correcte.</p>
+<p>Per accedir amb el client fent servir el nou usuari, cal seleccionar l'opció de "no esteu llistat", introduir les credencials i confirmar la creació del directori home en la ubicació designada. Després, podrem iniciar sessió i verificar que s'ha accedit amb l'usuari correcte.</p>
 
 
 
