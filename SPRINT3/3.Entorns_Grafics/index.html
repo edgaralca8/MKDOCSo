@@ -820,7 +820,28 @@
 
   <h1>3.Entorns Grafics</h1>
 
-
+<p><strong>Entorns gràfics</strong></p>
+<p>En aquest apartat veurem com configurar un LDAP amb interficie gràfica en aquest cas he escollit Apache Directory Studio perqué és intuitiu i senzill.</p>
+<p><strong>Apache Directory Studio</strong></p>
+<p>En primer lloc, ens descarregem l'apliació de la pàgina oficial. Després l'únic que hem de fer es descomprimir el paquet i executar-lo.</p>
+<p><img alt="26" src="../IMAGES/89.png" /></p>
+<p>Un cop dins buscarem la connexió que tenim del LDAP i fem login amb les nostres credencials, llavors afegirem noves entrades, aquestes poden ser creades des de zero o amb plantilles, en aquest cas he escollit fer-ne una amb una plantilla per crear un nou usuari. Com podrem comprovar els usuaris que hem creat en els passos anteriors estan presents a la nostra estructura.</p>
+<p><img alt="26" src="../IMAGES/90png.png" /></p>
+<p><img alt="26" src="../IMAGES/91.png" /></p>
+<p><img alt="26" src="../IMAGES/92.png" /></p>
+<p><img alt="26" src="../IMAGES/93.png" /></p>
+<p><img alt="26" src="../IMAGES/94.png" /></p>
+<p>Un cop afegit i comprovat que es correce afegirem una nova entrada al nostre domini.</p>
+<p><img alt="26" src="../IMAGES/95.png" /></p>
+<p>També afegirem les classes del objecte agregat.</p>
+<p><img alt="26" src="../IMAGES/96.png" /></p>
+<p>I per a finalitzar el que afegirem seran els atributs per a que l'usuari pugui ser utiitzat.</p>
+<p><img alt="26" src="../IMAGES/98.png" /></p>
+<p>Comprovem que s'hague creat correctament.</p>
+<p><img alt="26" src="../IMAGES/99.png" /></p>
+<p>En aquest cas he escollit la carpeta compartida de perfils per crear la home. I després he donat una contrasenya i el /bin/bash per al loginshell.</p>
+<p><img alt="26" src="../IMAGES/100.png" /></p>
+<p>Per entrar amb el client amb l'usuari nou hem d'escollir l'opció de no esteu llistat i allà posem les nostres credencials i ens crearà la home al directori escollit, després podrem entrar i comprovar que estem amb l'usuari correcte.</p>
 
 
 
