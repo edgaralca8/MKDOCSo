@@ -1211,20 +1211,20 @@
 </ul>
 <pre><code>gdisk /dev/sda
 </code></pre>
-<p><img alt="estructura1" src="estructura1.png" />
+<p><img alt="estructura1" src="../images/estructura1.png" />
 - Els discs estan dividits amb blocs i dins de cada bloc tenim uns sectors. El sector és la unitat mínima física on es guarden les dades i per defecte és 512 bytes, però el SO no treballa en sectors treballa en blocs. El bloc és la unitat mínima lògica on es guarden les dades per defecte. La mida del sector no es pot canviar ve definida de fàbrica, però la mida del bloc si es pot canviar. Quan formatem la partició. Per consultar les mides del sector podem utilitzar les seguents comandes.</p>
 <pre><code>fdisk -l
 </code></pre>
-<p><img alt="estructura2" src="estrucutra2.png" />
-<img alt="estructura3" src="estructura3.png" />
+<p><img alt="estructura2" src="../images/estrucutra2.png" />
+<img alt="estructura3" src="../images/estructura3.png" />
 - Com hem vist també ens surt on es troba instalat el sistema operatiu (part resaltada de l'imatge anterior). Per seguir analitzant les mides de les particions podem utilitzar la següent comanda.</p>
 <pre><code>tune2fs -l /dev/sda | grep Block
 </code></pre>
-<p><img alt="estructura4" src="estructura4.png" />
+<p><img alt="estructura4" src="../images/estructura4.png" />
 - Seguidament si necessitem saber la informació de les particions i sistemes de fitxers que s'utilitzen podem utilitzar aquesta comanda.</p>
 <pre><code>df -T
 </code></pre>
-<p><img alt="estrucutra5" src="estructura5.png" /> 
+<p><img alt="estrucutra5" src="../images/estructura5.png" /> 
 - Les mides dels blocs segons el tipus de fitxers que es guardin ens pot donar problemes, ara veurem dos possibles problemes amb les seves respectives solucions.</p>
 <h3 id="-fragmentacio-interna">- Fragmentació interna</h3>
 <p>La fragmentació interna és l’espai que desaprofitem dels blocs perquè no s’acaben d’emplenar. Una solució possible és canviar la mida del block reduïm la fragmentació interna, però pots fragmentar un arxiu (baixes el rendiment), busquem un equilibri. Aquesta canvi de mida per reduir l'espai del bloc ens pot servir si emmagatzemem arxius que no tinguin una mida molt gran, com podiren ser els fitxers de text. D'altra banda si volem guardar fitxers mes grans com podrien ser pel·licules o ISOs em de fer més gran la mida del bloc perqué sino fragmentarem molt els arxius. RECOMANACIÓ! buscar sempre un equilibri i emmagatzemar els tipus d'arxius diferents en particions diferents, per no barrejar "pelis amb textos".</p>
@@ -1247,8 +1247,8 @@
 </code></pre>
 <pre><code>e4defrag /dev/sda2 (desfragmentació)
 </code></pre>
-<p><img alt="estructura6" src="estructura6.png" />
-<img alt="estructura7" src="estructura7.png" /></p>
+<p><img alt="estructura6" src="../images/estructura6.png" />
+<img alt="estructura7" src="../images/estructura7.png" /></p>
 <h2 id="-particions">- Particions</h2>
 <h3 id="-creacio-de-particions-i-formateig">- Creació de particions i formateig</h3>
 <ul>
@@ -1259,19 +1259,19 @@
 <ul>
 <li>Aquí assignem la configuració de la partició, en aquest cas seguim amb la configuració per defecte fins al punt de la mida dels sectors, el primer (0-2048) esta reservat per al arrel?, i després assignem l'espai que vulguem. I finalment confirmem la configuració.</li>
 </ul>
-<p><img alt="particio1" src="particio1.png" /></p>
+<p><img alt="particio1" src="../images/particio1.png" /></p>
 <ul>
 <li>Amb la comanda de fdisk -l, mirem la configuració que em fet sigui correcte.</li>
 </ul>
-<p><img alt="particio2" src="particio2.png" /></p>
+<p><img alt="particio2" src="../images/particio2.png" /></p>
 <ul>
 <li>Per definir la mida del bloc que volem configurar podem utilitzar la següent comanda. Amb aquesta comanda fem la creació d'una partició amb el format d'arxius que vulguem. </li>
 </ul>
 <pre><code>mkfs.ext4 -b 2048 /dev/sdb1
 </code></pre>
-<p><img alt="particio3" src="particio3.png" />
+<p><img alt="particio3" src="../images/particio3.png" />
 - Per assegurar-nos de les mides podem utilitzar la següent comanda.
-<img alt="particio4" src="particio4.png" /></p>
+<img alt="particio4" src="../images/particio4.png" /></p>
 <h3 id="-muntatge">- Muntatge</h3>
 <ul>
 <li>
@@ -1281,19 +1281,19 @@
 <p>Temporal: mount es temporal, un cop montem la partició els fitxers que hi havien abans no apareixen i visceversa. Per comprovar això podem seguir els següents passos crear un arxiu abans del muntatge i un després, així veurem que quan el disc esta muntat sol veiem l'arxiu que em fet mentres aquest estava muntat, en canvi l'arxiu previ sol el podrem visualitzar després de desmuntar-lo, mentres estigui muntat no el veurem. En aquest exemple fem una carpeta "particio1" i dins posem un arxiu "hola".</p>
 </li>
 </ul>
-<p><img alt="particio5" src="particio5.png" /></p>
+<p><img alt="particio5" src="../images/particio5.png" /></p>
 <ul>
 <li>Al fer un ls veiem que no ens apareix l'arxiu hola sino un que es diu "lost+found".</li>
 </ul>
-<p><img alt="particio6" src="particio6.png" /></p>
+<p><img alt="particio6" src="../images/particio6.png" /></p>
 <ul>
 <li>Després provem de fer un arxiu nou adeu dins la partició i com veiem aquest si ens apareix al fer un ls de la carpeta.</li>
 </ul>
-<p><img alt="particio7" src="particio7.png" /></p>
+<p><img alt="particio7" src="../images/particio7.png" /></p>
 <ul>
 <li>Permanent: es al fitxer <code>/etc/fstab</code></li>
 </ul>
-<p><img alt="particio8" src="particio8.png" /></p>
+<p><img alt="particio8" src="../images/particio8.png" /></p>
 <p>En aquest fitxer podem definir els següents parametres:</p>
 <ul>
 <li>
@@ -1320,13 +1320,13 @@
 <ul>
 <li>El primer pas en el nostre cas es canviar a l'adaptador pont de la nostra màquina virtual.</li>
 </ul>
-<p><img alt="samba1" src="samba1.png" /></p>
+<p><img alt="samba1" src="../images/samba1.png" /></p>
 <ul>
 <li>Seguidament instal·lem el smb client. L'eina smbclient et permet accedir als recursos compartits d'un servidor SMB, de manera similar a un client FTP de línia de comandes. La pots utilitzar, per exemple, per carregar i descarregar fitxers cap a i des d'un recurs compartit.</li>
 </ul>
 <pre><code>apt install smbclient
 </code></pre>
-<p><img alt="samba2" src="samba2.png" /></p>
+<p><img alt="samba2" src="../images/samba2.png" /></p>
 <ul>
 <li>Després instal·larem el nautilus.</li>
 </ul>
@@ -1335,106 +1335,106 @@
 <ul>
 <li>Per comprovar si el nautilus funciona hem de seleccionar l'opció de <code>recursos compartits</code> d'un directori, el mes probable es que no funcioni.</li>
 </ul>
-<p><img alt="samba3" src="samba3.png" />
-<img alt="samba4" src="samba4.png" />
-<img alt="samba5" src="samba5.png" /></p>
+<p><img alt="samba3" src="../images/samba3.png" />
+<img alt="samba4" src="../images/samba4.png" />
+<img alt="samba5" src="../images/samba5.png" /></p>
 <ul>
 <li>Per continuar com aquest pas no ens ha funcionat instal·lem samba.</li>
 </ul>
 <pre><code>apt install samba
 </code></pre>
-<p><img alt="samba6" src="samba6.png" /></p>
+<p><img alt="samba6" src="../images/samba6.png" /></p>
 <ul>
 <li>Un cop tenim samba instal·lat accedirem a un dels seus arxius de configuració. <code>smb.conf</code>. En aquest arxiu afegirem la nostra partició i la configurarem per l'usuari "platano" tal i com es mostra a continuació.</li>
 </ul>
 <pre><code>nano /etc/samba/smb.conf
 </code></pre>
-<p><img alt="samba7" src="samba7.png" /></p>
+<p><img alt="samba7" src="../images/samba7.png" /></p>
 <ul>
 <li>
 <p>Per acabar amb la configuració de l'arxiu i els canvis s'apliquin hem de reiniciar el sistema.
-<img alt="samba8" src="samba8.png" /></p>
+<img alt="samba8" src="../images/samba8.png" /></p>
 </li>
 <li>
 <p>Abans de procedir canviarem algunes opcions de permisos i propietats del grup, com es mostra a continuació. També utilitzarem el nobody nogroup, això es fa per assegurar que el servei no exposi accidentalment més del sistema del que està pensat.</p>
 </li>
 </ul>
-<p><img alt="samba9" src="samba9.png" /></p>
+<p><img alt="samba9" src="../images/samba9.png" /></p>
 <ul>
 <li>Per acabar, crearem l'usuari "platano" per al qual em configurat el servidor samba.</li>
 </ul>
-<p><img alt="samba10" src="samba10.png" /></p>
+<p><img alt="samba10" src="../images/samba10.png" /></p>
 <ul>
 <li>A continuació, desde la nostra màquina (no virtual) visualitzarem els recursos compartits de la següent manera:</li>
 </ul>
-<p><img alt="samba11" src="samba11.png" /></p>
+<p><img alt="samba11" src="../images/samba11.png" /></p>
 <ul>
 <li>Per connectar-nos al servidor compartit ho farem a través del navegador de fitxers, a l'apartat d'altres ubicacions i introduriem l'ardreça corresponent.</li>
 </ul>
-<p><img alt="samba12" src="samba12.png" />
-<img alt="samba13" src="samba13.png" />
-<img alt="samba14" src="samba14.png" />
-<img alt="samba15" src="samba15.png" /></p>
+<p><img alt="samba12" src="../images/samba12.png" />
+<img alt="samba13" src="../images/samba13.png" />
+<img alt="samba14" src="../images/samba14.png" />
+<img alt="samba15" src="../images/samba15.png" /></p>
 <ul>
 <li>Com es pot veure a l'imatge, he creat un directori anomenat si, per comprovar que funciona la connexió amb els dos sentits, i que desde la màquina virtual també pot veure el que ha fet platano.
-<img alt="samba16" src="samba16.png" /></li>
+<img alt="samba16" src="../images/samba16.png" /></li>
 </ul>
 <h4 id="ntfs">ntfs</h4>
 <ul>
 <li>
 <p>En primer lloc consultarem l'estat del nostre disc amb la comanda <code>fdisk -l</code> per assegurar-nos de que encara tenim espai per un altra partició.
-<img alt="samba17" src="samba17.png" /></p>
+<img alt="samba17" src="../images/samba17.png" /></p>
 </li>
 <li>
 <p>Ens queda encara 1G per seguir, per tant, farem els mateixos passos que abans. Menys en la part del muntatge.
-<img alt="samba18" src="samba18.png" /></p>
+<img alt="samba18" src="../images/samba18.png" /></p>
 </li>
 <li>
 <p>Per assegurar-nos que ho hem fet correctament podem tornar a fer un <code>fdisk -l</code>
-<img alt="samba19" src="samba19.png" /></p>
+<img alt="samba19" src="../images/samba19.png" /></p>
 </li>
 <li>
 <p>En aquest pas es on es troba la diferencia, formatarem la partició per amb un sistema de fitxers diferent. 
-<img alt="samba20" src="samba20.png" /></p>
+<img alt="samba20" src="../images/samba20.png" /></p>
 </li>
 <li>
 <p>Seguidament, farem els mateixos passos que a la particio1, creem un directori i dins un arixu hola.
-<img alt="samba21" src="samba21.png" /></p>
+<img alt="samba21" src="../images/samba21.png" /></p>
 </li>
 <li>
 <p>En aquest cas volem fer un muntatge definitiu, així que modificarem l'arxiu <code>fstab</code>. L'única diferencia serà donar-li el format NTFS. També afegirem el uid i gid amb nobody nogroup, tal i com hem fet amb l'ext4, amb la diferencia que aquí ho apliquem directament al fstab per el format d'arxiu NTFS.
-<img alt="samba22" src="samba22.png" /></p>
+<img alt="samba22" src="../images/samba22.png" /></p>
 </li>
 <li>
 <p>Per continuar, assignarem al fitxer de configuració de samba a l'usuario platano per a poder accedir al servidor, tal i com hem fet abans.
-<img alt="samba23" src="samba23.png" /></p>
+<img alt="samba23" src="../images/samba23.png" /></p>
 </li>
 <li>
 <p>Comprovem igual que hem fet abans desde el nostre client (fora de la maquina virtual) que veiem la partició creada.
-<img alt="samba24" src="samba24.png" />
-<img alt="samba25" src="samba25.png" /></p>
+<img alt="samba24" src="../images/samba24.png" />
+<img alt="samba25" src="../images/samba25.png" /></p>
 </li>
 <li>
 <p>Per últim creem un directori nou per fer-li proves.
-<img alt="samba26" src="samba26.png" />
-<img alt="samba27" src="samba27.png" /></p>
+<img alt="samba26" src="../images/samba26.png" />
+<img alt="samba27" src="../images/samba27.png" /></p>
 </li>
 <li>
 <p>Ara comprovarem si el nostre servidor samba també funciona amb un sistema operatiu windows, per fer-ho crearem una màquina virtual windows 10, i entrarem desde el "explorador d'archivos" a l'apartat de xarxa i ens connectarem a una nova unitat de xarxa tal i com es mostra a continuació.
-<img alt="samba28" src="samba28.png" /></p>
+<img alt="samba28" src="../images/samba28.png" /></p>
 </li>
 <li>
 <p>Com es pot veure he seleccionat l'opció "conectar con otras credenciales", això es per a que platano pugui entrar.
-<img alt="samba29" src="samba29.png" /></p>
+<img alt="samba29" src="../images/samba29.png" /></p>
 </li>
 <li>
 <p>També podem veure la carpeta de proves que hem creat abans.
-<img alt="samba30" src="samba30.png" /></p>
+<img alt="samba30" src="../images/samba30.png" /></p>
 </li>
 <li>
 <p>Per comprovar si el funcionament es bidireccional crearem una altra carpeta de proves.
-<img alt="samba31" src="samba31.png" />
-<img alt="samba32" src="samba32.png" /></p>
+<img alt="samba31" src="../images/samba31.png" />
+<img alt="samba32" src="../images/samba32.png" /></p>
 </li>
 </ul>
 
