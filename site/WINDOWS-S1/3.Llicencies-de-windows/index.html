@@ -1468,24 +1468,76 @@
 
   <h1>3.Llicencies de windows</h1>
 
-<p>Llicències de Windows
-Per accedir a un servidor de Windows hi ha un tipus de llicència anomenada CAL. Aquesta és una llicència que utilitzen o bé els usuaris o bé els dispositius per connectar-se a un servidor de Windows. Això és degut al fet que la llicència de Windows d'un servidor només és útil per a un servidor, per tant si ens volem connectar amb diferents usuaris i/o dispositius necessitarem una llicència del tipus CAL.</p>
-<p>Com ja s'ha esmentat abans per al propi servidor necessites una llicència, però també necessitarem per a cada dispositiu una llicència d'aquest mateix, per tant podem dir que per configurar un servidor necessitem la llicència pròpia d'un servidor, les llicències pròpies dels dispositius que es volen connectar i per últim les llicències CAL perquè aquests dispositius es connectin al servidor.</p>
-<ul>
-<li>Tipus de CAL
-Hi ha dos tipus de llicència CAL, aquestes són a nivell d'usuari i a nivell de dispositiu.</li>
-</ul>
-<p>La llicència de dispositiu pot ser útil si tenim en una sola màquina diversos usuaris i tots requereixen d'un accés al servidor.</p>
-<p>La llicència d'usuari pot ser útil en cas que un usuari es pugui connectar al servidor mitjançant diversos dispositius.</p>
-<p>En definitiva, escollir el tipus de CAL es fa en funció de la necessitat de l'empresa en qüestió.</p>
-<ul>
-<li>Tipus de llicències
-Per cada versió del sistema operatiu tenim diferents tipus de llicencies:</li>
-</ul>
-<p>Home. Aquesta com el seu nom indica es per us domestic per tant no es pot unir a un domini ni permet connexions d'escriptori remot. No es recomana per un ús que no sigui el domestic.</p>
-<p>Pro. Aquesta llicència si permet unirse a un domini i permet la connexió remota, ja que es dedicada al sector professional, aquesta si que es recomanable per petites empreses.</p>
-<p>Enterprise. Aquesta llicència les funcionalitats de la versió pro pero ampliades ja que esta pensat per una infraestructura de gran empresa, aquesta compta amb més funcions de seguretat i gestió avançada. Esta pensada per grans volums de dispositius i usuaris.</p>
-<p>També cal afegir, que hi han llicencies com la d'education, la retail i la OEM, però aquestes no ens són molt interessants per als temes que estem tractant, simplement remarcar que hi han més tipus.</p>
+<p>icències de Windows i llicències CAL
+Quan treballem amb servidors Windows, no n'hi ha prou amb tenir la llicència del sistema operatiu. També calen llicències addicionals anomenades CAL (Client Access License), que permeten la connexió legal d’usuaris o dispositius al servidor.</p>
+<p>Què és una llicència CAL?
+Una CAL és una llicència que autoritza un usuari o un dispositiu a connectar-se legalment a un servidor Windows.</p>
+<p>La llicència de Windows Server només cobreix el dret d’instal·lar i utilitzar el sistema operatiu en el servidor.</p>
+<p>Qualsevol accés al servidor (per fitxers, aplicacions, Active Directory...) requereix una CAL addicional.</p>
+<p>Tipus de llicència CAL
+Hi ha dos tipus de CAL, i cal escollir segons el model de treball de l’empresa:</p>
+<p>CAL per usuari (User CAL)</p>
+<p>Assignada a una persona.</p>
+<p>Permet connectar-se al servidor des de diversos dispositius.</p>
+<p>Ideal per a treballadors que utilitzen diversos dispositius: portàtil, mòbil, ordinador de casa...</p>
+<p>CAL per dispositiu (Device CAL)</p>
+<p>Assignada a un dispositiu concret.</p>
+<p>Qualsevol usuari pot utilitzar aquest dispositiu per accedir al servidor.</p>
+<p>Recomanable en entorns com aules o laboratoris on diversos usuaris comparteixen un mateix PC.</p>
+<p>Preus orientatius de CALs:</p>
+<p>CAL per usuari: entre 30 € i 45 €</p>
+<p>CAL per dispositiu: entre 25 € i 40 €</p>
+<p>Tipus de llicència de Windows (per a sistemes operatius)
+Cada versió de Windows ofereix funcionalitats diferents. Cal triar la que millor s’adapti a l’ús previst.</p>
+<p>Windows Home</p>
+<p>Pensada per a ús domèstic.</p>
+<p>No permet unir-se a un domini.</p>
+<p>No admet connexió d’escriptori remot.</p>
+<p>No recomanada per a entorns professionals.</p>
+<p>Preu aproximat: 100 € (normalment inclosa en equips domèstics).</p>
+<p>Windows Pro</p>
+<p>Enfocada a professionals i petites empreses.</p>
+<p>Permet unir-se a un domini.</p>
+<p>Admet connexió d’escriptori remot.</p>
+<p>Inclou BitLocker, Hyper-V, i més opcions de gestió.</p>
+<p>Preu aproximat: entre 150 € i 220 €.</p>
+<p>Windows Enterprise</p>
+<p>Dissenyada per a grans empreses.</p>
+<p>Inclou totes les funcions de Pro i moltes més:</p>
+<p>Gestió massiva d’equips</p>
+<p>Seguretat avançada</p>
+<p>Funcions com AppLocker, DirectAccess, Windows To Go...</p>
+<p>S’ofereix habitualment via subscripció de volum (Microsoft 365 E3/E5).</p>
+<p>Preu aproximat: entre 30 € i 55 € mensuals per usuari.</p>
+<p>Windows Education</p>
+<p>Pensada per a entorns educatius.</p>
+<p>Similars a Enterprise però amb preu reduït.</p>
+<p>Sol ser gratuïta o a molt baix cost per a institucions educatives.</p>
+<p>Llicència OEM</p>
+<p>Preinstal·lada per fabricants en equips nous.</p>
+<p>Està vinculada a la màquina original i no es pot transferir.</p>
+<p>Ja inclosa en el preu de l’equip.</p>
+<p>Llicència Retail</p>
+<p>Es compra al detall, es pot transferir entre dispositius.</p>
+<p>Mateix preu aproximat que la versió Home o Pro.</p>
+<p>Exemple pràctic amb preus orientatius
+Suposem una petita empresa amb:</p>
+<p>1 servidor amb Windows Server 2022 Standard</p>
+<p>8 treballadors amb ordinadors individuals</p>
+<p>Necessitats:</p>
+<p>Llicència del servidor Windows Server 2022 Standard → 850 €</p>
+<p>Llicències CAL</p>
+<p>Si s’utilitzen User CALs: 8 usuaris × 35 € = 280 €</p>
+<p>Si s’utilitzen Device CALs i hi ha només 5 dispositius compartits: 5 × 30 € = 150 €</p>
+<p>Cost total aproximat:</p>
+<p>Amb User CALs: 850 € + 280 € = 1.130 €</p>
+<p>Amb Device CALs: 850 € + 150 € = 1.000 €</p>
+<p>Resum final
+Per configurar legalment un servidor Windows cal:</p>
+<p>Una llicència del sistema operatiu del servidor (ex. Windows Server)</p>
+<p>Una CAL per cada usuari o dispositiu que es connecti</p>
+<p>Escollir entre User o Device CAL segons el model de treball</p>
+<p>Tenir en compte quina versió de Windows es necessita per als clients (Home, Pro, Enterprise...)</p>
 
 
 
