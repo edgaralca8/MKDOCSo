@@ -1502,6 +1502,31 @@ A continuació, configurem el dispositiu emissor, que enviarà els logs:</p>
 <p>Modifiquem /etc/rsyslog.conf per indicar la IP del receptor.</p>
 <p>Finalitzada la configuració, al receptor podem executar tail -f /var/log/syslog per veure els registres rebuts.</p>
 <p>Des de l’emissor, provoquem un error d’autenticació per generar un registre i comprovem que aparegui correctament al receptor, mostrant la IP origen.</p>
+<p>REMOT
+1. Configuració de la màquina receptora (la que rep els logs)
+El primer pas és anar a la màquina virtual que rebrà els logs remots i instal·lar el servei rsyslog:</p>
+<p><img alt="09" src="../IMAGES/remot1.png" /></p>
+<ol>
+<li>Obrir els ports al firewall
+Per assegurar que la comunicació sigui possible, obrim el port 514 per UDP i TCP:</li>
+</ol>
+<p>sudo ufw allow 514/udp<br />
+sudo ufw allow 514/tcp</p>
+<p><img alt="09" src="../IMAGES/remot2.png" />
+Ara anirem a la màquina que envia el log, en aquesta també instal·larem rsyslog i en la configuració afegirem la ip del receptor.</p>
+<p>sudo apt update</p>
+<p>sudo apt install rsyslog
+<img alt="09" src="../IMAGES/remot3.png" /></p>
+<ol>
+<li>Configuració de la màquina emissora (la que envia els logs)
+Ara anem a la màquina que enviarà els logs. Igualment, instal·lem rsyslog:</li>
+</ol>
+<p><img alt="09" src="../IMAGES/remot6.png" /></p>
+<p>Un cop tot estigui configurat, enviem alguns logs de prova des de la màquina emissora per verificar que arriben correctament.</p>
+<p><img alt="09" src="../IMAGES/remot4.png" /></p>
+<p>Confirmació de recepció
+Finalment, si la configuració ha estat correcta, veurem els missatges enviats des de la màquina emissora apareixent al fitxer de log de la màquina receptora.</p>
+<p><img alt="09" src="../IMAGES/remot5.png" /></p>
 
 
 
