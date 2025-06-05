@@ -1468,40 +1468,127 @@
 
   <h1>1.Monitorització</h1>
 
-<p>Monitorització
-LOGS
-Els logs són fitxers de registre que documenten tot allò que succeeix en el sistema operatiu. Recullen informació tant dels processos del sistema com de les aplicacions, i són essencials per a tasques de diagnòstic i anàlisi. La majoria es troben ubicats al directori /var/log.</p>
-<p><img alt="1" src="../IMAGES/1.png" /></p>
-<p>Per evitar que aquests registres creixin indefinidament, és important definir una rotació de logs. Això es pot gestionar editant el fitxer /etc/logrotate.conf, on podem establir, per exemple, que es rotin setmanalment. També podem personalitzar la rotació per a determinats logs mitjançant fitxers ubicats a /etc/logrotate.d.</p>
-<p><img alt="2" src="../IMAGES/2.png" /></p>
-<p>Com a exemple, veurem com esta configurarada la rotació dels logs de dpkg, especificant que es rotin mensualment, es conservin els últims 12 fitxers antics, es comprimeixin després de cada rotació i se'ls apliquin permisos concrets.</p>
-<p><img alt="2" src="../IMAGES/3.png" />
-<img alt="2" src="../IMAGES/4.png" /></p>
-<p>Els fitxers de configuració com /etc/rsyslog.d/50-default.conf ens permeten definir quins tipus de missatges es registren i on es guarden. Qualsevol canvi en aquest fitxer requereix un reinici del servei rsyslog.</p>
-<p><img alt="2" src="../IMAGES/5.png" /></p>
-<p>Per verificar-ne el funcionament, podem enviar una alerta al sistema de correu i comprovar si s'ha registrat correctament al fitxer corresponent. També podem fer que totes les alertes de nivell crític es desin en un directori específic, la qual cosa facilita l’anàlisi de situacions greus.</p>
-<p><img alt="2" src="../IMAGES/6.png" />
-<img alt="2" src="../IMAGES/7.png" /></p>
-<p><strong>Systemd Journal</strong></p>
-<p>El journal de systemd centralitza els registres dels diferents serveis i components del sistema. A diferència de comandes com cat, que només mostren un fitxer concret, journalctl ofereix una visió unificada.</p>
-<p>Amb l’ordre journalctl -p crit, podem filtrar i mostrar només els missatges de nivell crític. Això ens permet detectar errors com problemes amb RAID, intents fallits d’autenticació o alertes com la que hem generat.</p>
-<p><img alt="2" src="../IMAGES/8.png" /></p>
-<p>LOGS en Xarxa
-Configuració del Receptor
-El primer pas per monitoritzar registres de manera remota és configurar el dispositiu receptor. Per fer-ho:</p>
-<p>Instal·lem el paquet rsyslog amb la següent comanda:</p>
-<p>sudo apt install rsyslog</p>
-<p><img alt="2" src="../IMAGES/9.png" /></p>
-<p>Editem el fitxer /etc/rsyslog.conf descomentant els mòduls i entrades necessàries per permetre la recepció de logs per xarxa.</p>
-<p><img alt="2" src="../IMAGES/10.png" /></p>
-<p>Reiniciem el servei rsyslog i obrim els ports corresponents al tallafocs.</p>
-<p><img alt="2" src="../IMAGES/11.png" /></p>
-<p>Configuració de l’Emissor
-A continuació, configurem el dispositiu emissor, que enviarà els logs:</p>
-<p>També hi instal·lem rsyslog.</p>
-<p>Modifiquem /etc/rsyslog.conf per indicar la IP del receptor.</p>
-<p>Finalitzada la configuració, al receptor podem executar tail -f /var/log/syslog per veure els registres rebuts.</p>
-<p>Des de l’emissor, provoquem un error d’autenticació per generar un registre i comprovem que aparegui correctament al receptor, mostrant la IP origen.</p>
+<p>Monitorització i rendiment
+INTERFÍCIE GRÀFICA
+Una de les eines que podem fer servier per tindre controlat el rendiment, és el programa Estadístiques de l'energia. Aquesta serveix per tindre informació sobre el dispositiu, tipus, si és xarxa elèctrica i cada quan es refresca, entre altres caracteristiques. 
+<img alt="09" src="../IMAGES/logg1.png" /></p>
+<p>Seguidament, també tenim el programa Monitor de sistema, aquest té diferents apartats, per exemple en aquest que mostro a la captura podem observar tots els processos actius, quan consumeixen, usuari que el provoca, etc. </p>
+<p><img alt="09" src="../IMAGES/logg2.png" /></p>
+<p>En el segon apartat podem veure en més detall el consum a temps real de la cpu, la xarxa i el disc. 
+<img alt="09" src="../IMAGES/logg3.png" /></p>
+<p>Per últim, tenim l'apartat File System, aquest mostra quant estem utilitzant al disc. 
+<img alt="09" src="../IMAGES/logg4.png" /></p>
+<p>TERMINAL
+El primer que farem és observar el fitxers que conté el directori /var/log/. Seguidament explicaré la funció de cadascun:</p>
+<p>cd /var/log/
+<img alt="09" src="../IMAGES/log1.png" />
+alternatives.log: Registra els canvis en el sistema d'alternatives d'Ubuntu, que gestiona enllaços simbòlics per diferents versions de programes.
+apport.log: Guarda informació sobre fallades i errors en aplicacions, útil per depurar problemes.
+apt/: Directori que conté els registres de les operacions de apt, com instal·lacions, actualitzacions i eliminacions de paquets.
+auth.log: Guarda informació sobre autenticacions del sistema, inici de sessió d'usuaris i esdeveniments relacionats amb la seguretat.
+boot.log: Conté els missatges generats durant l'inici del sistema.
+bootstrap.log: Registra informació sobre la instal·lació inicial del sistema operatiu.
+btmp: Registra intents de connexió fallits. Es pot llegir amb lastb.
+cloud-init.log / cloud-init-output.log: Fitxers relacionats amb la configuració inicial en sistemes basats en el núvol (Cloud-init).
+cups/: Directori amb registres del servei d'impressió CUPS.
+cups-browsed: Fitxer de registre del servei de detecció d'impressores en la xarxa.
+dist-upgrade: Conté informació sobre actualitzacions de distribució (do-release-upgrade).
+dmesg: Registra missatges del nucli (kernel), útil per veure errors de hardware i dispositius durant l'arrencada.
+dpkg.log: Registra totes les accions realitzades pel gestor de paquets dpkg (instal·lacions, eliminacions, actualitzacions).
+faillog: Conté informació sobre intents de connexió fallits dels usuaris.
+fontconfig.log: Relacionat amb la configuració i registre de fonts tipogràfiques en el sistema.
+gdm3: Registre del gestor de sessió gràfica GDM3 (GNOME Display Manager).
+gpu-manager.log: Conté informació sobre la gestió de la GPU en el sistema.
+hp/: Directori amb registres de HPLIP, el programari per a impressores HP.
+installer/: Registres relacionats amb la instal·lació inicial del sistema operatiu.
+journal/: Conté els registres del systemd-journald, una alternativa a syslog per registrar esdeveniments del sistema.
+kern.log: Guarda informació sobre el nucli de Linux, útil per detectar errors de maquinari o * mòduls del nucli.
+lastlog: Conté informació sobre la darrera connexió de cada usuari. Es pot consultar amb lastlog.
+openvpn/: Directori amb registres del servei OpenVPN, si està instal·lat.
+private/: Carpeta que pot contenir registres sensibles i restringits.
+README: Normalment, un fitxer de text amb informació sobre el contingut del directori /var/log/.
+speech-dispatcher: Registres del servei speech-dispatcher, utilitzat per a la síntesi de veu en aplicacions d'accessibilitat.
+sssd: Conté registres del System Security Services Daemon, que gestiona autenticacions i serveis relacionats amb usuaris.
+syslog: Registre principal del sistema que conté missatges de diferents serveis i aplicacions.
+sysstat: Registres de l'eina sysstat, que monitoritza el rendiment del sistema.
+ubuntu-advantage.log: Registre relacionat amb Ubuntu Advantage, un servei empresarial d'Ubuntu.
+unattended-upgrades: Conté registres de les actualitzacions automàtiques del sistema (unattended-upgrades).
+wtmp: Manté un registre de les connexions dels usuaris. Es pot consultar amb last.</p>
+<p>Seguidament entrarem dins del fitxer /etc/logrotate.conf aquest serveix per configurar la gestió automàtica dels fitxers de registre del sistema, definint cada quant temps es roten, es comprimeixen, s'eliminen o es conserven els registres antics per evitar que ocupin massa espai al disc.</p>
+<p>sudo nano /etc/logrotate.conf
+<img alt="09" src="../IMAGES/log2.png" />
+Després també tenim el directori /etc/logrotate.d/, aquest conté configuracions específiques de logrotate per a diferents serveis i aplicacions del sistema. Cada fitxer dins d'aquest directori defineix les regles de rotació de logs per un servei concret, permetent una gestió més detallada i personalitzada dels registres.</p>
+<p>cd /etc/logrotate.d/</p>
+<p>sudo nano dpkg</p>
+<p><img alt="09" src="../IMAGES/log3.png" /></p>
+<p><img alt="09" src="../IMAGES/log4.png" /></p>
+<p>En versions anteriors el fitxer /etc/rsyslog.conf era el que administrava tot, ara si entrem dins el propi fitxer indica que la ruta correcta és /etc/rsyslog.d/*.conf.</p>
+<p>sudo nano /etc/rsyslog.conf
+<img alt="09" src="../IMAGES/log5.png" />
+Entrarem dins del fitxer /etc/rsyslog.d/50-default.conf, aquest és el administra actualment.</p>
+<p>sudo nano /etc/rsyslog.d/50-default.conf
+<img alt="09" src="../IMAGES/log6.png" />
+Farem un tail -f /var/log/syslog per revisar els logs a temps real.</p>
+<p>tail -f /var/log/syslog
+<img alt="09" src="../IMAGES/log8.png" />
+Seguidament, farem un parell de proves. Per exemple si amb el logger creem un log d'alter en mail amb un missatge al executar-ho apareixerà al tail.</p>
+<p>tail -f /var/log/syslog</p>
+<p>logger -i -s -p mail.alert Alerta de mail!!!
+<img alt="09" src="../IMAGES/log9.png" />
+Si revisem el contingut dels fitxers mail.log i mail.err ens sortirà el resultat.</p>
+<p>cat /var/log/mail.log</p>
+<p>cat /var/log/mail.err
+<img alt="09" src="../IMAGES/log10.png" />
+Tot seguit, realitzarem un parell de canvis. En el fitxer de configuració canviarem la linia de mail.err i li ficarem un "=".</p>
+<p>mail.=err /var/log/mail.err
+<img alt="09" src="../IMAGES/log11.png" />
+Cada vegada que modifiquem aquest fitxer haurem de reinciar el servei, ja que si no els canvis no s'aplicaran.</p>
+<p>systemctl restart rsyslog
+<img alt="09" src="../IMAGES/log12.png" />
+Després, farem un tail en el que quan creesem una alerta de mail ens sortirà al propi tail i als fitxers mail.log i mail.err.</p>
+<p>tail -f /var/log/syslog</p>
+<p>logger -i -s -p mail.alert Alerta de error mail</p>
+<p>cat /var/log/mail.log</p>
+<p>cat /var/log/mail.err</p>
+<p><img alt="09" src="../IMAGES/log13.png" /></p>
+<p>Seguidament, anirem al fitxer de configuració i que tots els fitxers crit vaigin al fitxer alumnat.log, aquest el creem per què alhora de revisar errors critics en el sistema diariament, ens ajuda a trovar-los més rapidament.</p>
+<p>*.crit /var/log/alumnat.log</p>
+<p>systemctl restart rsyslog</p>
+<p><img alt="09" src="../IMAGES/log14.png" /></p>
+<p><img alt="09" src="../IMAGES/log15.png" />
+A continuació per que surten tots els errors a syslog ficarem asteriscs.</p>
+<p><em>.</em> -/var/log/syslog
+<img alt="09" src="../IMAGES/log16.png" /></p>
+<p>Com podem obeservar amb el tail veurem que els fitxers .crit surten.</p>
+<p>A continuació per filtrar procesos podem utilitzar grep o també podem utilitzar journalctl.</p>
+<p>cat /var/log/syslog | grep alumnat</p>
+<p>journalctl -p crit</p>
+<p><img alt="09" src="../IMAGES/log17.png" /></p>
+<p>També podem filtrar a partir de serveis o a partir de noms.</p>
+<p>journalctl -u auth</p>
+<p>journalctl -sdhhvg "" --until ""</p>
+<p><img alt="09" src="../IMAGES/log21.png" /></p>
+<p><img alt="09" src="../IMAGES/log20.png" /></p>
+<p>REMOT
+El primer que haurem de fer és anar a la vm que rep el log remot i instal·lar rsyslog. Després anirem al fitxer /etc/rsyslog.conf i descomentarem les linies que indica la captura.</p>
+<p>sudo apt update</p>
+<p>sudo apt install rsyslog
+<img alt="09" src="../IMAGES/remot1.png" />
+Seguidament al firewall acceptarem del port 514 udp i tcp. En acabar, haurem de fer un sudo systemctl restart rsyslog.</p>
+<p>ufw allow 514/upd</p>
+<p>ufw allow 514/tcp
+<img alt="09" src="../IMAGES/remot2.png" />
+Ara anirem a la màquina que envia el log, en aquesta també instal·larem rsyslog i en la configuració afegirem la ip del receptor.</p>
+<p>sudo apt update</p>
+<p>sudo apt install rsyslog
+<img alt="09" src="../IMAGES/remot3.png" />
+A continuació desde la vm receptora farem un tail de syslog per escoltar.</p>
+<p>tail -f /var/log/syslog
+<img alt="09" src="../IMAGES/remot6.png" /></p>
+<p>Després desde l'emissor, enviarem els següents logs. log
+<img alt="09" src="../IMAGES/remot4.png" />
+Per últim podrem observar desde la receptora que ha funcionat correctament el procès.</p>
+<p><img alt="09" src="../IMAGES/remot5.png" /></p>
 
 
 
